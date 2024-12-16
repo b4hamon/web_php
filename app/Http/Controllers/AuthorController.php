@@ -63,6 +63,7 @@ class AuthorController extends Controller
     public function update(Request $request, string $id)
     {
         $author = Author::find($id);
+        $author->name = $request->name;
         $author->nationality = $request->nationality;
         $author->birth_date = $request->birth_date;
         $author->save();
