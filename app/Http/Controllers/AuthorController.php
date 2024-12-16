@@ -53,7 +53,8 @@ class AuthorController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $author = Author::find($id);
+        return view('authors.edit', compact('author'));
     }
 
     /**
@@ -61,14 +62,21 @@ class AuthorController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $author = Author::find($id);
+        $author->nationality = $request->nationality;
+        $author->birth_date = $request->birth_date;
+        $author->save();
+        return redirect()->route('authors.index');
     }
+
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-        //
+        $author = Author::find($id);
+        $author->delete();
+        return redirect()->route('authors.index');
     }
 }
